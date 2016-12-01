@@ -3,4 +3,5 @@
     <name>aio-adal</name>
     <description></description>
     <muleExtension name="APIkit" qualifier="org.mule.tooling.apikit.3.7.0"/>
+    <muleExtension name="Secure Property Placeholder" qualifier="org.mule.tooling.ui.contribution.secure-property-placeholder.3.7.3"/>
 </mule-project>
