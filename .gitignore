@@ -7,6 +7,7 @@
 *.jar
 *.war
 *.ear
+*.zip
 
 # ------------------------------------------------------------------------------------------- #
 # Eclipse-specific (https://github.com/github/gitignore/blob/master/Global/Eclipse.gitignore) #
@@ -23,9 +24,9 @@ tmp/**/*
 local.properties
 .settings/
 .loadpath
-# Recommended for Maven based projects 
-.project
-.classpath
+# Recommended for Maven based projects
+#.project
+#I.classpath
 
 # External tool builders
 .externalToolBuilders/
@@ -46,3 +47,20 @@ local.properties
 flows/
 target/
 **/*.mflow
+.mule/
+
+# ----------------- #
+# IntelliJ-specific #
+# ----------------- #
+.idea/
+
+# Keystore and Certificates
+*.jks
+*.cert
+
+lib/
+catalog/
+
+.DS_Store
+
+README.html
