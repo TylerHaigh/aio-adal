@@ -1,5 +1,6 @@
 package com.pacificnational.adal;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -7,6 +8,7 @@ import java.util.concurrent.Future;
 import javax.naming.ServiceUnavailableException;
 
 import com.microsoft.aad.adal4j.AuthenticationContext;
+import com.microsoft.aad.adal4j.AuthenticationException;
 import com.microsoft.aad.adal4j.AuthenticationResult;
 
 public class PublicClient {
@@ -29,9 +31,15 @@ public class PublicClient {
 
             // Return JWT object to mule flow
             return result;
-        } catch (Exception e) {
+        } catch (ExecutionException e) {
             // Message contains JSON message from ADAL
-            return e.getCause().getMessage();
+
+            if (e.getCause() != null && e.getCause() instanceof AuthenticationException)
+                return e.getCause().getMessage();
+            else
+                throw e;
+        } catch (Exception e) {
+            throw e;
         }
     }
 
