@@ -1,7 +1,5 @@
 package com.pacificnational.adal;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -24,13 +22,17 @@ public class PublicClient {
     public String getClientId() { return clientId; }
     public void setClientId(String clientId) { this.clientId = clientId; }
 
-    public AuthenticationResult authenticateCredentials(String username, String password) throws Exception {
-        // Authenticate
-        AuthenticationResult result = getAccessTokenFromUserCredentials(
-                username, password);
+    public Object authenticateCredentials(String username, String password) throws Exception {
+        try {
+            // Authenticate
+            AuthenticationResult result = getAccessTokenFromUserCredentials(username, password);
 
-        // Return JWT object to mule flow
-        return result;
+            // Return JWT object to mule flow
+            return result;
+        } catch (Exception e) {
+            // Message contains JSON message from ADAL
+            return e.getCause().getMessage();
+        }
     }
 
     /*
