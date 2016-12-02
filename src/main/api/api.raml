@@ -10,16 +10,18 @@ mediaType: application/json
   description: Uses Azure ADAL to authenticate the user against the provided credentials
   post:
     description: Uses Azure ADAL to authenticate the user against the provided credentials
-    queryParameters:
-      username:
-        description: Your Azure AD Email address (User Principal Name)
-        required: true
-        type: string
-        example: John_Doe@Microsoft.com.au
-      password:
-        description: Your Azure AD Password associated with your username
-        required: true
-        type: string
+    body:
+      application/x-www-form-urlencoded:
+        formParameters:
+          username:
+            description: Your Azure AD Email address (User Principal Name)
+            required: true
+            type: string
+            example: John_Doe@Microsoft.com.au
+          password:
+            description: Your Azure AD Password associated with your username
+            required: true
+            type: string
     responses:
       200:
         body:

@@ -24,16 +24,13 @@ public class PublicClient {
     public String getClientId() { return clientId; }
     public void setClientId(String clientId) { this.clientId = clientId; }
 
-    public void authenticateCredentials() throws Exception {
-        // Get username and password from mule flow
-        String username = "";
-        String password = "";
-
+    public AuthenticationResult authenticateCredentials(String username, String password) throws Exception {
         // Authenticate
         AuthenticationResult result = getAccessTokenFromUserCredentials(
                 username, password);
 
         // Return JWT object to mule flow
+        return result;
     }
 
     /*
