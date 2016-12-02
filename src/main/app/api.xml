@@ -70,6 +70,19 @@
         <set-variable variableName="password" value="#[payload['password']]" doc:name="Get password"/>
 
         <invoke object-ref="global:AdalClientBean" method="authenticateCredentials" doc:name="Invoke authenticateCredentials" methodArguments="#[flowVars.username],#[flowVars.password]"/>
+
+        <!-- Check if invalid response -->
+        <choice doc:name="If authentication is invalid">
+            <when expression="#[payload instanceof com.pacificnational.adal.InvalidAuthenticationResult]">
+                <set-property propertyName="http.status" value="#[401]" doc:name="Put 401 Unauthorised into HTTP Status" />
+                <set-payload value="#[payload.message]" doc:name="Set Payload to exception message object"/>
+            </when>
+
+            <otherwise>
+                <set-variable variableName="DummyVariableThatDoesNothing" value="1" doc:name="Set Dummy Variable That Does Nothing"/>
+            </otherwise>
+        </choice>
+
         <json:object-to-json-transformer doc:name="Object to JSON"/>
     </flow>
 

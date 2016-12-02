@@ -34,8 +34,10 @@ public class PublicClient {
         } catch (ExecutionException e) {
             // Message contains JSON message from ADAL
 
-            if (e.getCause() != null && e.getCause() instanceof AuthenticationException)
-                return e.getCause().getMessage();
+            if (e.getCause() != null && e.getCause() instanceof AuthenticationException) {
+                InvalidAuthenticationResult res = new InvalidAuthenticationResult(e.getCause().getMessage());
+                return res;
+            }
             else
                 throw e;
         } catch (Exception e) {
