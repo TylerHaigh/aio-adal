@@ -84,7 +84,25 @@
         </choice>
 
         <json:object-to-json-transformer doc:name="Object to JSON"/>
+
+        <!-- CORS Headers -->
+        <set-property propertyName="Access-Control-Allow-Origin" value="*" />
+        <set-property propertyName="Access-Control-Allow-Methods" value="POST,GET,PUT,DELETE,OPTIONS" />
+        <set-property propertyName="Access-Control-Allow-Headers" value="Access-Control-Allow-Origin,Access-Control-Allow-Methods,Keep-Alive,User-Agent,Cache-Control,Content-Type,Origin,Authorization,Accept" />
     </flow>
+
+    <flow name="options:/authenticate:api-config">
+
+        <set-variable variableName="DummyVariableThatDoesNothing" value="1" doc:name="Set Dummy Variable That Does Nothing"/>
+        <set-payload value="#[flowVars.DummyVariableThatDoesNothing]" doc:name="Set Payload to dummy object"/>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+
+        <!-- CORS Headers -->
+        <set-property propertyName="Access-Control-Allow-Origin" value="*" />
+        <set-property propertyName="Access-Control-Allow-Methods" value="POST,GET,PUT,DELETE,OPTIONS" />
+        <set-property propertyName="Access-Control-Allow-Headers" value="Access-Control-Allow-Origin,Access-Control-Allow-Methods,Keep-Alive,User-Agent,Cache-Control,Content-Type,Origin,Authorization,Accept" />
+    </flow>
+
 
     <!-- - - - - - - - - - - - - - - - - - - ERROR HANDLING  - - - - - - - - - - - - - - - - - - -->
 

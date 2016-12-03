@@ -8,6 +8,16 @@ mediaType: application/json
 /authenticate:
   displayName: Authenticate
   description: Uses Azure ADAL to authenticate the user against the provided credentials
+  options:
+    description: CORS API for Angular when OPTIONS request is sent for preflight checklists
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "1"
+              }
   post:
     description: Uses Azure ADAL to authenticate the user against the provided credentials
     body:
